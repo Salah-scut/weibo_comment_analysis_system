@@ -1,0 +1,40 @@
+{%extends "base.html" %}
+{% block mainHead %}
+     <link rel="stylesheet" href="/static/css/table.css">
+{% endblock %}
+
+{% block mainbody %}
+<table border="1">
+    <thead>
+        <tr>
+            {% if name_list %}
+                {% for name in name_list %}
+                    <th>{{name}}</th>
+                {% endfor %}
+            {% endif %}
+        </tr>
+    </thead>
+    {% if article_list %}
+      {% for article in article_list %}
+        <tr>
+            <td>{{article.screen_name}}</td>
+            <td style="width: 40%">{{article.text}}</td>
+            <td style="width: 10%">{{article.topics}}</td>
+            <td>{{article.publish_time}}</td>
+            <td>{{article.location}}</td>
+            <td>{{article.comments_count}}</td>
+            <td>{{article.reposts_count}}</td>
+<!--            <td>-->
+<!--                <div class="btn-group" role="group" aria-label="...">-->
+<!--                  <button type="button" class="btn btn-default" > <a href="/weibo_comment/">查看评论</a></button>-->
+<!--                </div>-->
+<!--            </td>-->
+        </tr>
+      {% endfor %}
+    {% else %}
+      <p>没有查询到数据</p>
+    {% endif %}
+
+</table>
+
+{% endblock %}

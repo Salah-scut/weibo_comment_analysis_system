@@ -1,0 +1,44 @@
+{%extends "base.html" %}
+{% block mainHead %}
+    <link rel="stylesheet" href="/static/css/table.css">
+{% endblock %}
+
+{% block mainbody %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>用户名</th>
+            <th>评论内容</th>
+            <th>发布时间</th>
+            <th>情感分类</th>
+            <th>正面情感概率</th>
+<!--            <th>操作</th>-->
+        </tr>
+    </thead>
+    {% if comment_list %}
+      {% for comment in comment_list %}
+        <tr>
+            <td>{{comment.username}}</td>
+            <td style="width: 40%">{{comment.text}}</td>
+            <td>{{comment.publish_time}}</td>
+            {% if comment.positive %}
+            <td > <span>正面情感</span></td>
+            {% else %}
+                <td>负面情感</td>
+            {% endif %}
+            <td>{{comment.prob}}</td>
+<!--            <td>-->
+<!--                <div class="btn-group" role="group" aria-label="...">-->
+<!--                  <button type="button" class="btn btn-default">详细分析</button>-->
+<!--                </div>-->
+<!--            </td>-->
+        </tr>
+      {% endfor %}
+    {% else %}
+      <p>没有查询到数据</p>
+    {% endif %}
+
+</table>
+
+{% endblock %}
